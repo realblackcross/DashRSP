@@ -1,3 +1,5 @@
+// src/pages/Dashboard.tsx
+
 import React, { useEffect, useState } from 'react';
 import Dropdown from '../components/Dropdown';
 import { parseCSV } from '../utils/dataProcessor';
@@ -25,37 +27,28 @@ const Dashboard: React.FC = () => {
    */
   useEffect(() => {
     async function loadAndFilter() {
-      const allData = await parseCSV('/rspData.csv'); // Load CSV data from public folder
+      const allData = await parseCSV('/rspData.csv'); // Load CSV from public
 
       console.log('Raw Data Sample:', allData.slice(0, 3));
-      if (allData.length === 0) {
-        console.warn('⚠️ No data loaded! Check the CSV path or content.');
-      }
 
-      // Filter data based on selected values
       const filtered = allData.filter((entry) => {
-        // Safely extract city and fuel with optional fallback for trailing spaces
         const city = String(entry['Metro Cities'] || entry['Metro Cities ']).trim().toLowerCase();
         const fuel = String(entry['Products'] || entry['Products ']).trim().toLowerCase();
         const day = entry['Calendar Day'] || entry['Calendar Day '];
         const year = day ? new Date(day).getFullYear() : null;
 
-        // Match all selected criteria
-        const isMatch =
+        return (
           city === selectedCity.toLowerCase() &&
           fuel === selectedFuel.toLowerCase() &&
-          year === parseInt(selectedYear);
-
-        if (isMatch) console.log('Match Found:', entry);
-
-        return isMatch;
+          year === parseInt(selectedYear)
+        );
       });
 
       console.log('Filtered Count:', filtered.length);
       setFilteredData(filtered);
     }
 
-    loadAndFilter(); // Trigger when any filter changes
+    loadAndFilter(); // Trigger whenever filters change
   }, [selectedCity, selectedFuel, selectedYear]);
 
   return (
@@ -72,47 +65,41 @@ const Dashboard: React.FC = () => {
       }}
     >
       <div
+        className="dashboard-layout" // used for responsive CSS
         style={{
           width: '100%',
+          maxWidth: '1400px',
           display: 'flex',
           flexDirection: 'row',
+          flexWrap: 'wrap', // allow wrap on small screens
           gap: '2rem',
         }}
       >
-        {/* 🔹 LEFT COLUMN - Filter Panel */}
+        {/* 🔹 Filter Panel */}
         <div
           style={{
-            width: '280px',
+            flex: '1 1 280px',
             backgroundColor: '#ffffff',
             padding: '2rem',
             borderRadius: '12px',
             boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '1rem',
-            flexShrink: 0,
+            gap: '1.25rem',
           }}
         >
           <h2 style={{ fontSize: '1.4rem', marginBottom: '0.5rem', color: '#2c3e50' }}>
             Filter Options
           </h2>
-
-          {/* Dropdown components for filters */}
           <Dropdown label="City" options={cities} value={selectedCity} onChange={setSelectedCity} />
-          <Dropdown
-            label="Fuel Type"
-            options={fuels}
-            value={selectedFuel}
-            onChange={setSelectedFuel}
-          />
+          <Dropdown label="Fuel Type" options={fuels} value={selectedFuel} onChange={setSelectedFuel} />
           <Dropdown label="Year" options={years} value={selectedYear} onChange={setSelectedYear} />
         </div>
 
-        {/* 🔷 RIGHT COLUMN - Chart Display */}
+        {/* 🔷 Chart Panel */}
         <div
           style={{
-            flex: 1,
-            minWidth: '800px',
+            flex: '3 1 600px',
             backgroundColor: '#ffffff',
             padding: '2rem',
             borderRadius: '12px',
@@ -120,9 +107,9 @@ const Dashboard: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: '1.5rem',
+            minWidth: '300px',
           }}
         >
-          {/* Title */}
           <h1
             style={{
               fontSize: '2rem',
@@ -134,7 +121,6 @@ const Dashboard: React.FC = () => {
             RSP Dashboard
           </h1>
 
-          {/* Chart Component */}
           <div style={{ width: '100%' }}>
             <Chart data={filteredData} />
           </div>
