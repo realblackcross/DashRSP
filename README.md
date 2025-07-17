@@ -47,6 +47,10 @@ Below is a screenshot of the Metro Fuel RSP Dashboard showing monthly average pr
 git clone https://github.com/realblackcross/DashRSP.git
 cd DashRSP
 
+# Install vite
+yarn global add vite
+
+
 # Install dependencies
 yarn install
 
