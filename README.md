@@ -6,6 +6,10 @@ Built using **React + TypeScript + Vite**, this tool lets users filter fuel pric
 
 **Live Demo:** [https://dash-rsp-7iym.vercel.app](https://dash-rsp-7iym.vercel.app)
 
+⚠️ **Note on GitHub Red Cross (❌):**  
+> A previous failed deployment triggered a GitHub status check showing a red ❌.  
+> This does **not affect the current project**, which is successfully deployed and fully functional at the above link.
+
 ## Dashboard Preview
 
 Below is a screenshot of the Metro Fuel RSP Dashboard showing monthly average prices based on selected filters (City, Fuel Type, Year):
