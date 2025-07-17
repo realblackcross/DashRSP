@@ -48,9 +48,8 @@ yarn dev
 Deployed at:
 🔗 https://dash-rsp-7iym.vercel.app
 
-## Screenshots
+## Dashboard Preview
 
-###  Dashboard View
+Below is a screenshot of the Metro Fuel RSP Dashboard showing monthly average prices based on selected filters (City, Fuel Type, Year):
 
-![Dashboard](screenshots/dashboard-view.png)
-
+![Dashboard Screenshot](https://github.com/realblackcross/DashRSP/blob/main/screenshots/dashboard-view.png?raw=true)
