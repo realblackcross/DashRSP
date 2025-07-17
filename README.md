@@ -4,6 +4,8 @@
 
 Built using **React + TypeScript + Vite**, this tool lets users filter fuel price trends by **city**, **fuel type**, and **year**, displaying results through an interactive bar chart.
 
+**Live Demo:** [https://dash-rsp-7iym.vercel.app](https://dash-rsp-7iym.vercel.app)
+
 ## Dashboard Preview
 
 Below is a screenshot of the Metro Fuel RSP Dashboard showing monthly average prices based on selected filters (City, Fuel Type, Year):
@@ -51,12 +53,3 @@ yarn install
 # Run locally
 yarn dev 
 
-# Live Demo
-Deployed at:
-🔗 https://dash-rsp-7iym.vercel.app
-
-## Dashboard Preview
-
-Below is a screenshot of the Metro Fuel RSP Dashboard showing monthly average prices based on selected filters (City, Fuel Type, Year):
-
-![Dashboard Screenshot](https://github.com/realblackcross/DashRSP/blob/main/screenshots/dashboard-view.png?raw=true)
